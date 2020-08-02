@@ -3,7 +3,7 @@ import { RouteComponentProps } from '@reach/router'
 
 import { Row, Col } from 'react-materialize'
 
-import Recommendations from '../components/recommendations'
+// import RecommendationPostList from '../components/RecommendationPostList'
 import Follow from '../components/follow'
 import ProfileImage from '../components/ProfileImage'
 import gql from 'graphql-tag'
@@ -38,7 +38,7 @@ const MainScreen: React.FC<MainProps> = () => {
           </Col>
         </Row>
       </dl>
-      <Recommendations items={currentUser?.recommendations} />
+      {/* <RecommendationPostList postItems={currentUser?.recommendations} /> */}
       {/* <Favorites /> */}
     </Fragment>
   )
