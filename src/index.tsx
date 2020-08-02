@@ -8,6 +8,8 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import App from './App'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from './styles/theme'
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -19,7 +21,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ThemeProvider theme={theme()}>
+      <App />
+    </ThemeProvider>
   </ApolloProvider>,
   document.getElementById('root'),
 )
