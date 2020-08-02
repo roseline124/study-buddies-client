@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Divider, Typography, Link } from '@material-ui/core'
+import { Container, Divider, Typography, Link, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import GitHubMarkIcon from '../static/icons/GitHubMark'
 
@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '100%',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-start',
+    },
   },
   orgName: {
     fontWeight: 400,
@@ -41,12 +44,14 @@ const Footer = () => {
         <Link underline="none" href="https://github.com/roseline124/study-buddies" target="_blank">
           <div className={classes.githubWrapper}>
             <GitHubMarkIcon className={classes.githubIcon} />
-            <div>
-              <Typography variant="h1" className={classes.orgName}>
-                Study Buddies
-              </Typography>
-              <Typography>Together is Better! Share your study contents with friends!</Typography>
-            </div>
+            <Hidden smDown>
+              <div>
+                <Typography variant="h1" className={classes.orgName}>
+                  Study Buddies
+                </Typography>
+                <Typography>Together is Better! Share your study contents with friends!</Typography>
+              </div>
+            </Hidden>
           </div>
         </Link>
         <Typography className={classes.copyright}>©2020, roseline124</Typography>

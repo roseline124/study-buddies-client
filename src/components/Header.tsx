@@ -1,6 +1,16 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Avatar, ButtonBase, Container, Divider, Typography, Link, Menu, MenuItem } from '@material-ui/core'
+import {
+  Avatar,
+  ButtonBase,
+  Container,
+  Divider,
+  Typography,
+  Link,
+  Menu,
+  MenuItem,
+  Hidden,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Logo from '../static/icons/Logo'
@@ -30,11 +40,18 @@ const useStyles = makeStyles(theme => {
       fill: theme.palette.primary.main,
       borderRadius: '50%',
       marginRight: 10,
+      [theme.breakpoints.down('sm')]: {
+        width: '2.5rem',
+        height: '2.5rem',
+      },
     },
     logoTitle: {
       fontSize: 24,
       fontStyle: 'italic',
       fontWeight: 500,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 20,
+      },
     },
     signIn: {
       fontSize: 16,
@@ -78,7 +95,9 @@ const Header = () => {
       <Container maxWidth="lg" className={classes.container}>
         <Link href="/" underline="none">
           <div className={classes.logoWrapper}>
-            <Logo className={classes.logo} />
+            <Hidden smDown>
+              <Logo className={classes.logo} />
+            </Hidden>
             <Typography className={classes.logoTitle} color="primary">
               Study Buddies
             </Typography>
