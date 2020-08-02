@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => {
     root: {
       ...flexProps,
       backgroundColor: 'white',
-      height: 80,
+      height: 70,
     },
     container: {
       ...flexProps,

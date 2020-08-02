@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     backgroundColor: '#f9f9f9',
   },
   container: {
-    minHeight: 'calc(100vh - 160px)', // 80px: header, 80px: footer
+    minHeight: 'calc(100vh - 150px)', // 70px: header, 80px: footer
   },
 })
 
