@@ -10,17 +10,21 @@ const useStyles = makeStyles(() => {
       display: 'flex',
       flexFlow: 'column',
       minHeight: '100vh',
-      backgroundColor: 'white',
+      backgroundColor: '#f9f9f9',
     },
+    container: {},
   }
 })
 
 const PageLayout = () => {
   const classes = useStyles()
   return (
-    <Container className={classes.root} maxWidth="lg">
+    <div className={classes.root}>
       <Header />
-    </Container>
+      <Container className={classes.container} maxWidth="lg">
+        sdfjsf
+      </Container>
+    </div>
   )
 }
 
