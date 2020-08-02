@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import './profile.css'
-import ProfileImage from '../components/profile-image'
+import ProfileImage from '../components/ProfileImage'
 import BackButton from '../components/back-button'
 import Posts from '../components/posts'
 
@@ -68,7 +68,7 @@ interface ProfileProps extends RouteComponentProps {
   id?: string
 }
 
-const Profile: React.FC<ProfileProps> = (props) => {
+const Profile: React.FC<ProfileProps> = props => {
   const [dayOfTheWeek, setDayOfTheWeek] = useState(-1)
   const { data } = useQuery(CURRENT_USER)
   const currentUser = data?.currentUser
@@ -81,41 +81,44 @@ const Profile: React.FC<ProfileProps> = (props) => {
   const streak = user?.consecutiveStudyDays?.length || 0
   let dotw = -1
   if (user?.consecutiveStudyDays) {
-    const lastDay = new Date(user.consecutiveStudyDays[user.consecutiveStudyDays.length - 1]);
-    dotw = lastDay.getDay();
+    const lastDay = new Date(user.consecutiveStudyDays[user.consecutiveStudyDays.length - 1])
+    dotw = lastDay.getDay()
     // Sunday - Saturday : 0 - 6
   }
 
   const [follow] = useMutation(FOLLOW, {
     variables: {
-      followingID: user?.id
-    }
+      followingID: user?.id,
+    },
   })
   return (
     <Fragment>
       <BackButton />
-      <dl style={{marginTop: 20}}>
+      <dl style={{ marginTop: 20 }}>
         <Row>
           <Row>
             <Col s={4}>
               <ProfileImage user={user} />
-              {currentUser?.id !== user?.id
-                ? <span
-                    style={{position: "relative", top: -20, left: 40, zIndex: 1}}
-                    onClick={
-                      async() => {
-                        follow()
-                        setBoolfollow(!boolFollow)
-                      }
-                    }
-                  >
-                  {boolFollow
-                    ? <Icon>add_circle</Icon>
-                    : <Icon>add_circle_outline</Icon>}</span>
-                : null}
+              {currentUser?.id !== user?.id ? (
+                <span
+                  style={{ position: 'relative', top: -20, left: 40, zIndex: 1 }}
+                  onClick={async () => {
+                    follow()
+                    setBoolfollow(!boolFollow)
+                  }}
+                >
+                  {boolFollow ? <Icon>add_circle</Icon> : <Icon>add_circle_outline</Icon>}
+                </span>
+              ) : null}
             </Col>
             <Col s={8}>
-              {user ? <Follow userid={user.id} following={user.followings?.length || 0} followers={user.followers?.length || 0} /> : null}
+              {user ? (
+                <Follow
+                  userid={user.id}
+                  following={user.followings?.length || 0}
+                  followers={user.followers?.length || 0}
+                />
+              ) : null}
             </Col>
           </Row>
         </Row>
@@ -132,27 +135,98 @@ const Profile: React.FC<ProfileProps> = (props) => {
       </div>
       <div className="week">
         <Col m={12} s={6}>
-          <Button className={dotw >= 0 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(0)} floating small node="button" waves="light">S</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 1 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(1)} floating small node="button" waves="light">M</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 2 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(2)} floating small node="button" waves="light">T</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 3 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(3)} floating small node="button" waves="light">W</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 4 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(4)} floating small node="button" waves="light">T</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 5 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(5)} floating small node="button" waves="light">F</Button>&nbsp;&nbsp;
-          <Button className={dotw >= 6 ? '' : 'disabled'} onClick={() => setDayOfTheWeek(6)} floating small node="button" waves="light">S</Button>&nbsp;&nbsp;
+          <Button
+            className={dotw >= 0 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(0)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            S
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 1 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(1)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            M
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 2 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(2)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            T
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 3 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(3)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            W
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 4 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(4)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            T
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 5 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(5)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            F
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            className={dotw >= 6 ? '' : 'disabled'}
+            onClick={() => setDayOfTheWeek(6)}
+            floating
+            small
+            node="button"
+            waves="light"
+          >
+            S
+          </Button>
+          &nbsp;&nbsp;
         </Col>
       </div>
-      {currentUser?.id === user?.id ? <Button
-        fab={{
-          direction: 'top',
-          toolbarEnabled: true
-        }}
-        floating
-        icon={<Icon>+</Icon>}
-        large
-        node="button"
-        onClick={() => navigate('/add')}
-      >
-      </Button> : null}
+      {currentUser?.id === user?.id ? (
+        <Button
+          fab={{
+            direction: 'top',
+            toolbarEnabled: true,
+          }}
+          floating
+          icon={<Icon>+</Icon>}
+          large
+          node="button"
+          onClick={() => navigate('/add')}
+        ></Button>
+      ) : null}
       {user ? <Posts user={user} dayOfTheWeek={dayOfTheWeek} /> : null}
     </Fragment>
   )
