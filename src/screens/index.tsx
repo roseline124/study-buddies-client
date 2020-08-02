@@ -7,7 +7,7 @@ import Profile from './profile'
 import AddContent from './add-content'
 import FollowList from '../components/follow-list'
 
-export default function Pages() {
+export default function Screens() {
   return (
     <Fragment>
       <Router primary={false} component={Fragment}>

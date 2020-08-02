@@ -1,11 +1,13 @@
 import React from 'react'
-import logo from '../static/logo.svg'
-import Pages from './pages'
-
+import Screens from './screens'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from './styles/theme'
 const App = () => {
   return (
     <div className="App">
-      <Pages />
+      <ThemeProvider theme={theme}>
+        <Screens />
+      </ThemeProvider>
     </div>
   )
 }
