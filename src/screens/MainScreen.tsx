@@ -48,7 +48,7 @@ const CURRENT_USER = gql`
 
 interface MainProps extends RouteComponentProps {}
 
-const Main: React.FC<MainProps> = () => {
+const MainScreen: React.FC<MainProps> = () => {
   const { data, loading, error } = useQuery(CURRENT_USER)
   if (loading) {
     return (
@@ -63,18 +63,15 @@ const Main: React.FC<MainProps> = () => {
   const followers = currentUser?.followers.length || 0
   return (
     <Fragment>
-      <dl style={{marginTop: 20}}>
+      <dl style={{ marginTop: 20 }}>
         <Row>
           <Col s={4}>
             <ProfileImage user={currentUser} />
           </Col>
           <Col s={8}>
-            {currentUser
-              ? <Follow
-                userid={currentUser.id}
-                following={following}
-                followers={followers} />
-              : null}
+            {currentUser ? (
+              <Follow userid={currentUser.id} following={following} followers={followers} />
+            ) : null}
           </Col>
         </Row>
       </dl>
@@ -84,4 +81,4 @@ const Main: React.FC<MainProps> = () => {
   )
 }
 
-export default Main
+export default MainScreen

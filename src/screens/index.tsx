@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Router } from '@reach/router'
 
-import Main from './main'
+import MainScreen from './MainScreen'
 import Profiles from './profiles'
 import Profile from './profile'
 import AddContent from './add-content'
@@ -11,7 +11,7 @@ export default function Screens() {
   return (
     <Fragment>
       <Router primary={false} component={Fragment}>
-        <Main default />
+        <MainScreen default />
         <Profiles path="/profile">
           <Profile path=":id" />
         </Profiles>
