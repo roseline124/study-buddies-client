@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => {
       fontSize: 24,
       fontStyle: 'italic',
       fontWeight: 500,
-      letterSpacing: -1,
     },
     signIn: {
       fontSize: 16,

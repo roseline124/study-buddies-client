@@ -45,7 +45,7 @@ const Footer = () => {
               <Typography variant="h1" className={classes.orgName}>
                 Study Buddies
               </Typography>
-              <Typography>Together is Better! Share you study contents with friends!</Typography>
+              <Typography>Together is Better! Share your study contents with friends!</Typography>
             </div>
           </div>
         </Link>
