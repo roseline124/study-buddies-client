@@ -8,18 +8,21 @@ const typography = createTypography(palette, {
     fontWeight: 500,
     lineHeight: '1.5em',
     letterSpacing: '-0.6px',
+    color: palette.text.primary,
   },
   body1: {
     fontSize: '0.9375rem', // 15px
     fontWeight: 300,
     lineHeight: '1.4em',
     letterSpacing: '-0.6px',
+    color: palette.text.primary,
   },
   body2: {
     fontSize: '0.75rem', // 12px
     fontWeight: 300,
     lineHeight: '1.3em',
     letterSpacing: '-0.6px',
+    color: palette.text.primary,
   },
   fontFamily: [
     'Roboto',
