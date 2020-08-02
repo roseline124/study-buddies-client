@@ -1,5 +1,6 @@
 import React from 'react'
 import MainScreen from './screens/MainScreen'
+import './styles/index.css'
 
 const App = () => {
   return (

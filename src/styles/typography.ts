@@ -22,7 +22,7 @@ const typography = createTypography(palette, {
     letterSpacing: '-0.6px',
   },
   fontFamily: [
-    'Montserrat',
+    'Roboto',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
