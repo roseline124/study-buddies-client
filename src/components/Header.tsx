@@ -1,0 +1,144 @@
+import React from 'react'
+import gql from 'graphql-tag'
+import { Avatar, ButtonBase, Container, Divider, Typography, Link, Menu, MenuItem } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+
+import Logo from '../static/icons/Logo'
+import { useHeader_CurrentUserQuery } from '../generated/graphql'
+
+const useStyles = makeStyles(theme => {
+  const flexProps = {
+    display: 'flex',
+    alignItems: 'center',
+  }
+
+  return {
+    root: {
+      ...flexProps,
+      backgroundColor: 'white',
+      height: 70,
+    },
+    container: {
+      ...flexProps,
+      justifyContent: 'space-between',
+    },
+    logoWrapper: flexProps,
+    logo: {
+      width: '3rem',
+      height: '3rem',
+      color: 'white',
+      fill: theme.palette.primary.main,
+      borderRadius: '50%',
+      marginRight: 10,
+    },
+    logoTitle: {
+      fontSize: 24,
+      fontStyle: 'italic',
+      fontWeight: 500,
+    },
+    signIn: {
+      fontSize: 16,
+      color: theme.palette.text.primary,
+    },
+    menu: {
+      top: '70px !important',
+    },
+    accountInfo: {
+      padding: '6px 16px',
+      display: 'block',
+    },
+    name: {
+      fontWeight: 500,
+    },
+    email: {
+      fontWeight: 400,
+    },
+  }
+})
+
+// TODO: !currentUser -> signin render
+const Header = () => {
+  const classes = useStyles()
+  const { data, error, loading } = useHeader_CurrentUserQuery()
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  if (error || loading) return null
+
+  return (
+    <div className={classes.root}>
+      <Container maxWidth="lg" className={classes.container}>
+        <Link href="/" underline="none">
+          <div className={classes.logoWrapper}>
+            <Logo className={classes.logo} />
+            <Typography className={classes.logoTitle} color="primary">
+              Study Buddies
+            </Typography>
+          </div>
+        </Link>
+        {data?.currentUser ? (
+          <>
+            <ButtonBase
+              onClick={handleClick}
+              aria-controls="header-account-menu"
+              aria-haspopup="true"
+              href=""
+            >
+              <Avatar alt="profile-image" src={data?.currentUser?.profileURL || ''} />
+            </ButtonBase>
+            <Menu
+              id="header-account-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              classes={{ paper: classes.menu }}
+            >
+              <div className={classes.accountInfo}>
+                <Typography className={classes.name}>{data?.currentUser?.name}</Typography>
+                <Typography className={classes.email}>{data?.currentUser?.email}</Typography>
+              </div>
+              <Divider />
+              <MenuItem>
+                <Link
+                  href={`${process.env.REACT_APP_SERVER_BASE_URL}/logout`}
+                  underline="none"
+                  color="inherit"
+                >
+                  Logout
+                </Link>
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <Link href={`${process.env.REACT_APP_SERVER_BASE_URL}/login`} underline="none">
+            <Typography className={classes.signIn} variant="h1">
+              LogIn
+            </Typography>
+          </Link>
+        )}
+      </Container>
+    </div>
+  )
+}
+
+export default Header
+
+gql`
+  query Header_currentUser {
+    currentUser {
+      id
+      name
+      email
+      profileURL
+    }
+  }
+`
