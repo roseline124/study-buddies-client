@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Router } from '@reach/router'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import MainScreen from './MainScreen'
 import Profiles from './profiles'
@@ -9,15 +9,14 @@ import FollowList from '../components/follow-list'
 
 export default function Screens() {
   return (
-    <Fragment>
-      <Router primary={false} component={Fragment}>
-        <MainScreen default />
-        <Profiles path="/profile">
-          <Profile path=":id" />
-        </Profiles>
-        <AddContent path="/add" />
-        <FollowList path="/user/:userid/:target" />
-      </Router>
-    </Fragment>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={MainScreen} />
+        <Route path="/profile" exact component={Profiles} />
+        <Route path="/:id" exact component={Profile} />
+        <Route path="/add" component={AddContent} />
+        <Route path="/user/:userid/:target" component={FollowList} />
+      </Switch>
+    </Router>
   )
 }
