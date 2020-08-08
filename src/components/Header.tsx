@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import gql from 'graphql-tag'
 import {
   Avatar,
@@ -14,7 +14,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 
 import Logo from '../static/icons/Logo'
-import { useHeader_CurrentUserQuery } from '../generated/graphql'
+import { CurrentUserContext } from '../hooks/CurrentUserProvider'
 
 const useStyles = makeStyles(theme => {
   const flexProps = {
@@ -73,10 +73,9 @@ const useStyles = makeStyles(theme => {
   }
 })
 
-// TODO: !currentUser -> signin render
 const Header = () => {
   const classes = useStyles()
-  const { data, loading } = useHeader_CurrentUserQuery()
+  const { currentUser } = useContext(CurrentUserContext)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -101,7 +100,7 @@ const Header = () => {
             </Typography>
           </div>
         </Link>
-        {!loading && data?.currentUser ? (
+        {currentUser ? (
           <>
             <ButtonBase
               onClick={handleClick}
@@ -109,7 +108,7 @@ const Header = () => {
               aria-haspopup="true"
               href=""
             >
-              <Avatar alt="profile-image" src={data?.currentUser?.profileURL || ''} />
+              <Avatar alt="profile-image" src={currentUser?.profileURL || ''} />
             </ButtonBase>
             <Menu
               id="header-account-menu"
@@ -120,8 +119,8 @@ const Header = () => {
               classes={{ paper: classes.menu }}
             >
               <div className={classes.accountInfo}>
-                <Typography className={classes.name}>{data?.currentUser?.name}</Typography>
-                <Typography className={classes.email}>{data?.currentUser?.email}</Typography>
+                <Typography className={classes.name}>{currentUser?.name}</Typography>
+                <Typography className={classes.email}>{currentUser?.email}</Typography>
               </div>
               <Divider />
               <MenuItem>
@@ -148,14 +147,3 @@ const Header = () => {
 }
 
 export default Header
-
-gql`
-  query Header_currentUser {
-    currentUser {
-      id
-      name
-      email
-      profileURL
-    }
-  }
-`
