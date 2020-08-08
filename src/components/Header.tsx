@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => {
 // TODO: !currentUser -> signin render
 const Header = () => {
   const classes = useStyles()
-  const { data, error, loading } = useHeader_CurrentUserQuery()
+  const { data, loading } = useHeader_CurrentUserQuery()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -87,8 +87,6 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-
-  if (error || loading) return null
 
   return (
     <div className={classes.root}>
@@ -103,7 +101,7 @@ const Header = () => {
             </Typography>
           </div>
         </Link>
-        {data?.currentUser ? (
+        {!loading && data?.currentUser ? (
           <>
             <ButtonBase
               onClick={handleClick}
