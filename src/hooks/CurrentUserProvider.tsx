@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react'
 import gql from 'graphql-tag'
 import { useCurrentUserQuery, CurrentUserFragment } from '../generated/graphql'
 
-interface CurrentUserType {
+export interface CurrentUserType {
   currentUser: CurrentUserFragment | null
 }
 
