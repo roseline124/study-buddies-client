@@ -2,18 +2,18 @@ import React from 'react'
 import gql from 'graphql-tag'
 
 import PageLayout from '../components/PageLayout'
-// import { useMainScreen_CurrentUserQuery } from '../generated/graphql'
+// import { useProfileOverview_CurrentUserQuery } from '../generated/graphql'
 
-const MainScreen = () => {
-  // const { data, loading, error } = useMainScreen_CurrentUserQuery()
+const ProfileOverview = () => {
+  // const { data, loading, error } = useProfileOverview_CurrentUserQuery()
   // const currentUser = data?.currentUser
   return <PageLayout></PageLayout>
 }
 
-export default MainScreen
+export default ProfileOverview
 
 gql`
-  query MainScreen_currentUser {
+  query ProfileOverview_currentUser {
     currentUser {
       id
       name
