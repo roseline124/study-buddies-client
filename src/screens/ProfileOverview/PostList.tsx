@@ -18,12 +18,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: 24,
     marginBottom: 10,
     [theme.breakpoints.down('sm')]: {
-      fontSize: 20,
+      fontSize: 18,
     },
   },
   menuBar: {
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 10,
+    },
   },
   viewMore: {
     marginRight: 10,
@@ -35,6 +38,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       backgroundColor: 'white',
       borderRadius: 5,
+    },
+  },
+  addPostButton: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 12,
     },
   },
 }))
@@ -62,16 +70,16 @@ const PostList = () => {
         <Typography variant="h1" className={classes.title}>
           My Posts
         </Typography>
-        <Hidden smDown>
-          <div>
+        <div>
+          <Hidden smDown>
             <Button color="primary" className={classes.viewMore}>
               view more
             </Button>
-            <Button color="primary" variant="contained">
-              add post
-            </Button>
-          </div>
-        </Hidden>
+          </Hidden>
+          <Button color="primary" variant="contained" className={classes.addPostButton}>
+            add post
+          </Button>
+        </div>
       </div>
 
       <div className={classes.postsWrapper}>

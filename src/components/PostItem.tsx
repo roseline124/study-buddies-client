@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 5,
     marginBottom: 10,
     [theme.breakpoints.down('sm')]: {
+      marginBottom: 0,
       display: 'block',
       backgroundColor: 'transparent',
     },
@@ -72,6 +73,10 @@ const useStyles = makeStyles(theme => ({
   iconWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 10,
+    },
   },
   link: {
     display: 'flex',
@@ -122,13 +127,11 @@ const PostItem: FC<PostItemProps> = ({ post, loading }) => {
           </div>
         </Link>
 
-        <Hidden smDown>
-          <div className={classes.iconWrapper}>
-            <IconButton classes={{ root: classes.likeIcon }}>
-              <FavoriteBorderIcon />
-            </IconButton>
-          </div>
-        </Hidden>
+        <div className={classes.iconWrapper}>
+          <IconButton classes={{ root: classes.likeIcon }}>
+            <FavoriteBorderIcon />
+          </IconButton>
+        </div>
       </div>
       <Hidden mdUp>
         <Divider className={classes.divider} />
