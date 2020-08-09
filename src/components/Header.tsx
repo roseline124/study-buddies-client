@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => {
       fontSize: 24,
       fontStyle: 'italic',
       fontWeight: 500,
+      fontFamily: 'Roboto',
       [theme.breakpoints.down('sm')]: {
         fontSize: 20,
       },
