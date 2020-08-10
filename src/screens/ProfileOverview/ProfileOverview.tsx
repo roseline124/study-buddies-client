@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Grid } from '@material-ui/core'
+import { Grid, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PageLayout from '../../components/PageLayout'
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProfileOverview = () => {
   const classes = useStyles()
-  const { data, loading } = useProfileOverview_UserQuery({ variables: { id: '' } })
+  const { data, loading } = useProfileOverview_UserQuery({ variables: { id: '110651788476397555375' } })
 
   return (
     <PageLayout>
@@ -34,14 +34,21 @@ const ProfileOverview = () => {
         <Grid item sm={3} xs={12} className={classes.profile}>
           <Profile user={data?.user || undefined} loading={loading} />
         </Grid>
+        <Hidden mdUp>
+          <Grid item xs={12}>
+            <Streak user={data?.user || undefined} />
+          </Grid>
+        </Hidden>
         <Grid item sm={9} xs={12}>
           <PostList />
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item sm={3} xs={12}>
-          <Streak user={data?.user || undefined} />
-        </Grid>
+        <Hidden smDown>
+          <Grid item xs={3}>
+            <Streak user={data?.user || undefined} />
+          </Grid>
+        </Hidden>
       </Grid>
     </PageLayout>
   )
