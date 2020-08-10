@@ -7,7 +7,7 @@ const palette = createPalette({
     contrastText: '#FFFFFF',
   },
   secondary: {
-    main: '#233342',
+    main: '#ff005c',
     dark: '#2a2226',
   },
   error: {
