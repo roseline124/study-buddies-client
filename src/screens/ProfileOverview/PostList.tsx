@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   title: {
-    fontSize: 24,
     marginBottom: 10,
     [theme.breakpoints.down('sm')]: {
       fontSize: 18,
@@ -24,9 +23,7 @@ const useStyles = makeStyles(theme => ({
   menuBar: {
     display: 'flex',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: 10,
-    },
+    marginBottom: 10,
   },
   viewMore: {
     marginRight: 10,
