@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import PageLayout from '../../components/PageLayout'
 import Profile from './Profile'
 import PostList from './PostList'
+import Streak from './Streak'
 import { useProfileOverview_UserQuery } from '../../generated/graphql'
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProfileOverview = () => {
   const classes = useStyles()
-  const { data, loading } = useProfileOverview_UserQuery({ variables: { id: '110651788476397555375' } })
+  const { data, loading } = useProfileOverview_UserQuery({ variables: { id: '' } })
 
   return (
     <PageLayout>
@@ -35,6 +36,11 @@ const ProfileOverview = () => {
         </Grid>
         <Grid item sm={9} xs={12}>
           <PostList />
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item sm={3} xs={12}>
+          <Streak user={data?.user || undefined} />
         </Grid>
       </Grid>
     </PageLayout>
@@ -47,6 +53,7 @@ gql`
   query ProfileOverview_User($id: ID!) {
     user(id: $id) {
       ...Profile_user
+      ...Streak_user
     }
   }
 `
