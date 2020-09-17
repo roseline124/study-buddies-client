@@ -36,7 +36,7 @@ const ProfileOverview = () => {
         </Grid>
         <Hidden mdUp>
           <Grid item xs={12}>
-            <Streak user={data?.user || undefined} />
+            <Streak user={data?.user || undefined} loading={loading} />
           </Grid>
         </Hidden>
         <Grid item sm={9} xs={12}>
@@ -46,7 +46,7 @@ const ProfileOverview = () => {
       <Grid container>
         <Hidden smDown>
           <Grid item xs={3}>
-            <Streak user={data?.user || undefined} />
+            <Streak user={data?.user || undefined} loading={loading} />
           </Grid>
         </Hidden>
       </Grid>

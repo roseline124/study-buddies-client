@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { createContext } from 'react'
 import gql from 'graphql-tag'
 import { useCurrentUserQuery, CurrentUserFragment } from '../generated/graphql'
 

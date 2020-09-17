@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import gql from 'graphql-tag'
 import {
   Avatar,
   ButtonBase,

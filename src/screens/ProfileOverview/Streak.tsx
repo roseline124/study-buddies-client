@@ -76,11 +76,13 @@ const useStyles = makeStyles(theme => ({
 
 interface StreakProps {
   user?: Streak_UserFragment
+  loading: boolean
 }
 
-const Streak: FC<StreakProps> = ({ user }) => {
+const Streak: FC<StreakProps> = ({ user, loading }) => {
   const classes = useStyles()
-  const streaks = user?.consecutiveStudyDays
+
+  const streaks = loading ? user?.consecutiveStudyDays : []
   const days = streaks?.map(streak => new Date(streak).getDay())
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 
@@ -95,12 +97,14 @@ const Streak: FC<StreakProps> = ({ user }) => {
           <Calendar
             className={classes.calendar}
             tileClassName={classes.calendarTile}
-            value={streaks ? [new Date(streaks[streaks?.length - 1]), new Date(streaks[0])] : new Date()}
+            value={
+              streaks?.length ? [new Date(streaks[streaks?.length - 1]), new Date(streaks[0])] : new Date()
+            }
           />
         </Hidden>
         <Hidden mdUp>
           {weekDays.map((day, index) => (
-            <ButtonBase>
+            <ButtonBase key={index}>
               <div className={clsx(classes.weekday, { [classes.weekdayActive]: days?.includes(index) })}>
                 {day}
               </div>

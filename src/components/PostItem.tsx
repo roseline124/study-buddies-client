@@ -5,7 +5,6 @@ import { Typography, Link, Divider, Hidden, IconButton } from '@material-ui/core
 import { Skeleton } from '@material-ui/lab'
 import { makeStyles } from '@material-ui/core/styles'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 
 import { PostItem_PostFragment } from '../generated/graphql'
 import { getEllipsisProps } from '../styles/utils'

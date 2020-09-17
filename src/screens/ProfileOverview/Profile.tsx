@@ -108,7 +108,7 @@ const Profile: FC<ProfileProps> = ({ user, loading }) => {
             <div className={classes.profileImgWrapper}>
               <img
                 className={classes.profileImg}
-                alt="profile-image"
+                alt="profile-img"
                 src={user?.profileURL || DefaultProfileImage}
               />
             </div>
