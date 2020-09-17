@@ -25,8 +25,8 @@ const typography = createTypography(palette, {
     color: palette.text.primary,
   },
   fontFamily: [
-    'Roboto',
     'Noto Sans KR',
+    'Roboto',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',

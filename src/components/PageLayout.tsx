@@ -16,13 +16,13 @@ const useStyles = makeStyles({
   },
 })
 
-const PageLayout = () => {
+const PageLayout = ({ children }: any) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <Header />
       <Container className={classes.container} maxWidth="lg">
-        sdfjsf
+        {children}
       </Container>
       <Footer />
     </div>

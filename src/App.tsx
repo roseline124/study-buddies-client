@@ -1,11 +1,14 @@
 import React from 'react'
-import MainScreen from './screens/MainScreen'
+import ProfileOverview from './screens/ProfileOverview'
+import { CurrentUserProvider } from './hooks/useCurrentUser'
 import './styles/index.css'
 
 const App = () => {
   return (
     <div className="App">
-      <MainScreen />
+      <CurrentUserProvider>
+        <ProfileOverview />
+      </CurrentUserProvider>
     </div>
   )
 }
