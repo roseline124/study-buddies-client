@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileOverview from './screens/ProfileOverview'
-import CurrentUserProvider from './hooks/CurrentUserProvider'
+import { CurrentUserProvider } from './hooks/useCurrentUser'
 import './styles/index.css'
 
 const App = () => {

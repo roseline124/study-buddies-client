@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Avatar,
   ButtonBase,
@@ -13,7 +13,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 
 import Logo from '../static/icons/Logo'
-import { CurrentUserContext } from '../hooks/CurrentUserProvider'
+import { useCurrentUserContext } from '../hooks/useCurrentUser'
 
 const useStyles = makeStyles(theme => {
   const flexProps = {
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => {
 
 const Header = () => {
   const classes = useStyles()
-  const { currentUser } = useContext(CurrentUserContext)
+  const { currentUser } = useCurrentUserContext()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 

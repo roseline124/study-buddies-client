@@ -34,6 +34,7 @@
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "clsx": "^1.1.1",
+    "constate": "^3.0.1",
     "graphql": "^15.3.0",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
@@ -59,5 +60,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
