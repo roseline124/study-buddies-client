@@ -40,7 +40,7 @@ const ProfileOverview = () => {
           </Grid>
         </Hidden>
         <Grid item sm={9} xs={12}>
-          <PostList />
+          <PostList userId={data?.user?.id} />
         </Grid>
       </Grid>
       <Grid container>

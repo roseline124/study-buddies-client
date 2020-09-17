@@ -13,12 +13,18 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": ".",
-    "paths": {
-      "*": ["src/*"]
-    },
     "allowSyntheticDefaultImports": true,
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

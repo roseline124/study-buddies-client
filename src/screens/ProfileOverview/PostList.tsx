@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import gql from 'graphql-tag'
 
 import { Button, Typography, Hidden, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PostItem from '../../components/PostItem'
+import PostFormDialog from './PostFormDialog'
 import { usePostListQuery, PostOrderField, OrderDirection } from '../../generated/graphql'
+import { useCurrentUserContext } from '../../hooks/useCurrentUser'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,13 +46,29 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const PostList = () => {
-  const classes = useStyles()
+interface PostListProps {
+  userId?: string
+}
 
-  const { data, loading } = usePostListQuery({
+const PostList: FC<PostListProps> = ({ userId }) => {
+  const classes = useStyles()
+  const [open, setOpen] = React.useState(false)
+  const { currentUser } = useCurrentUserContext()
+
+  const isCurrentUser = userId === currentUser?.id
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const { data, loading, refetch } = usePostListQuery({
     variables: {
       input: {
-        filterBy: { authorIDs: ['110651788476397555375'] },
+        filterBy: { authorIDs: [userId] },
         orderBy: { field: PostOrderField.CreatedAt, direction: OrderDirection.Desc },
         pagination: { page: 1, pageSize: 3 },
       },
@@ -65,7 +83,7 @@ const PostList = () => {
 
       <div className={classes.menuBar}>
         <Typography variant="h1" className={classes.title}>
-          My Posts
+          {isCurrentUser ? 'My Posts' : 'Posts'}
         </Typography>
         <div>
           <Hidden smDown>
@@ -73,9 +91,16 @@ const PostList = () => {
               view more
             </Button>
           </Hidden>
-          <Button color="primary" variant="contained" className={classes.addPostButton}>
-            add post
-          </Button>
+          {isCurrentUser && (
+            <Button
+              color="primary"
+              variant="contained"
+              className={classes.addPostButton}
+              onClick={handleClickOpen}
+            >
+              add post
+            </Button>
+          )}
         </div>
       </div>
 
@@ -84,6 +109,8 @@ const PostList = () => {
           <PostItem post={post} loading={loading} />
         ))}
       </div>
+
+      <PostFormDialog open={open} onClose={handleClose} userId={userId} refetchPost={refetch} />
     </div>
   )
 }
