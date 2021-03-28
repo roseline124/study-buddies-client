@@ -17,9 +17,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   profile: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flexDirection: 'column',
     marginBottom: 10,
   },
 }))
@@ -33,9 +30,12 @@ const ProfileOverview = () => {
       <Grid container className={classes.root}>
         <Grid item sm={3} xs={12} className={classes.profile}>
           <Profile user={data?.user || undefined} loading={loading} />
+          <Hidden smDown>
+            <Streak user={data?.user || undefined} loading={loading} />
+          </Hidden>
         </Grid>
         <Hidden mdUp>
-          <Grid item xs={12}>
+          <Grid item sm={3} xs={12}>
             <Streak user={data?.user || undefined} loading={loading} />
           </Grid>
         </Hidden>
@@ -43,13 +43,13 @@ const ProfileOverview = () => {
           <PostList userId={data?.user?.id} />
         </Grid>
       </Grid>
-      <Grid container>
+      {/* <Grid container>
         <Hidden smDown>
           <Grid item xs={3}>
             <Streak user={data?.user || undefined} loading={loading} />
           </Grid>
         </Hidden>
-      </Grid>
+      </Grid> */}
     </PageLayout>
   )
 }

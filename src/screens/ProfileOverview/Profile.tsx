@@ -109,7 +109,7 @@ const Profile: FC<ProfileProps> = ({ user, loading }) => {
               <img
                 className={classes.profileImg}
                 alt="profile-img"
-                src={user?.profileURL || DefaultProfileImage}
+                src={user ? user.profileURL : DefaultProfileImage}
               />
             </div>
           ) : (
