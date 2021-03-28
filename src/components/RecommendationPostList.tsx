@@ -6,15 +6,17 @@ import './list.css'
 import { Post } from '../generated/graphql'
 import PostCard from './post-card'
 
-interface RecommendationsProps extends RouteComponentProps {
-  items: [Post]
+interface RecommendationPostListProps extends RouteComponentProps {
+  postItems?: Post[]
 }
 
-const Recommendations: React.FC<RecommendationsProps> = (props) => {
-  if (!props.items?.length) {
+const RecommendationPostList: React.FC<RecommendationPostListProps> = ({ postItems }) => {
+  if (!postItems?.length) {
     return (
-      <div style={{ verticalAlign: 'middle'}}>
-        There is no item to recommend now.<br /><br />
+      <div style={{ verticalAlign: 'middle' }}>
+        There is no item to recommend now.
+        <br />
+        <br />
         Press the profile image and post one by clicking the floating button on the bottom right.
       </div>
     )
@@ -22,7 +24,7 @@ const Recommendations: React.FC<RecommendationsProps> = (props) => {
   return (
     <dl className="recommendations">
       <h5>Recommendations</h5>
-      {props.items?.map(item => (
+      {postItems?.map(item => (
         <Fragment key={item.id}>
           <Col m={6}>
             <PostCard item={item} />
@@ -33,4 +35,4 @@ const Recommendations: React.FC<RecommendationsProps> = (props) => {
   )
 }
 
-export default Recommendations
+export default RecommendationPostList

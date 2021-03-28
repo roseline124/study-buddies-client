@@ -4,8 +4,23 @@
 
 - `yarn install`: pacakge install
 - `yarn build` : build
-- `yarn gql-gen --watch` : graphql type에 변화가 있을 때마다 `graphql.tsx` 파일 재생성
-- `yarn start`: 로컬에서 실행
+- `yarn gql-gen --watch` : regenerate `graphql.tsx` and watch the changes of graphql type
+- `yarn start`: run in local
+
+[![Run on Ainize](https://ainize-dev.herokuapp.com/images/run_on_ainize_button.svg)](https://studybuddies-chloe-codes1.endpoint.ainize.ai/)
+
+## Environment variables
+
+- `REACT_APP_`: custom variables need this prefix
+- use `process.env.REACT_APP_{env_var_name}`
+  🧚‍♀️don't install dotenv package
+
+e.g. .env
+
+```
+PORT=7000 // client port
+REACT_APP_SERVER_BASE_URL=http://localhost:3000 // server url
+```
 
 [![Run on Ainize](https://ainize-dev.herokuapp.com/images/run_on_ainize_button.svg)](https://studybuddies-chloe-codes1.endpoint.ainize.ai/)
 
@@ -23,21 +38,24 @@ REACT_APP_SERVER_BASE_URL=http://localhost:3000 // server url
   
 ## Query
 
+e.g. in .tsx
+
 - graphql document 작성 예시
 
 ```
 gql`
-  query QueryName {
+  query HelloWorld {
     helloWorld
   }
 `
 ```
 
-- graphql-code-generator에서 `use{QueryName}Query`와 같은 네이밍 규칙으로 쿼리 함수 생성
-- `src/generated/graphql.tsx` 파일로부터 `use{QueryName}Query` import하여 사용
-- response에서 data, loading, error를 꺼내 먹어요(😎)
+- import `use{QueryName}Query` from `src/generated/graphql.tsx`
+- You can use data, loading, error, etc from response(😎)
 
 ```typescript
+import { useHelloWorldQuery } from 'src/generated/graphql.tsx'
+
 const App = () => {
   const { data, loading, error } = useHelloWorldQuery()
 

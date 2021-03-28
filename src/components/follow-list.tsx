@@ -3,7 +3,7 @@ import { RouteComponentProps } from '@reach/router'
 
 import { Col, Row } from 'react-materialize'
 import { User } from '../generated/graphql'
-import ProfileImage from './profile-image'
+import ProfileImage from './ProfileImage'
 
 import './list.css'
 import { useQuery } from '@apollo/react-hooks'
@@ -16,39 +16,42 @@ interface FollowListProps extends RouteComponentProps {
   target?: string
 }
 
-const FollowList: React.FC<FollowListProps> = (props) => {
-  const { data } = useQuery(gql`
-    query FollowList_User($userid: ID!) {
-      user(id: $userid) {
-        followers {
-          id
-          name
-          profileURL
-          followings {
-            id
-          }
+const FollowList: React.FC<FollowListProps> = props => {
+  const { data } = useQuery(
+    gql`
+      query FollowList_User($userid: ID!) {
+        user(id: $userid) {
           followers {
             id
+            name
+            profileURL
+            followings {
+              id
+            }
+            followers {
+              id
+            }
           }
-        }
-        followings {
-          id
-          name
-          profileURL
           followings {
             id
-          }
-          followers {
-            id
+            name
+            profileURL
+            followings {
+              id
+            }
+            followers {
+              id
+            }
           }
         }
       }
-    }
-  `, {
-    variables: {
-      userid: props.userid,
-    }
-  })
+    `,
+    {
+      variables: {
+        userid: props.userid,
+      },
+    },
+  )
   const currentUser = data?.user
   const following = currentUser?.followings
   const followers = currentUser?.followers
