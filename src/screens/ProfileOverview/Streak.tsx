@@ -11,6 +11,9 @@ import { Streak_UserFragment } from '../../generated/graphql'
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: 30,
+    [theme.breakpoints.up('md')]: {
+      marginTop: 80,
+    },
   },
   calendarWrapper: {
     display: 'inline',

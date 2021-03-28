@@ -70,7 +70,7 @@ const PostList: FC<PostListProps> = ({ userId }) => {
       input: {
         filterBy: { authorIDs: [userId] },
         orderBy: { field: PostOrderField.CreatedAt, direction: OrderDirection.Desc },
-        pagination: { page: 1, pageSize: 3 },
+        pagination: { page: 1, pageSize: 5 },
       },
     },
   })
