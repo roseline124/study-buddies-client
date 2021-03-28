@@ -22,11 +22,25 @@ PORT=7000 // client port
 REACT_APP_SERVER_BASE_URL=http://localhost:3000 // server url
 ```
 
+[![Run on Ainize](https://ainize-dev.herokuapp.com/images/run_on_ainize_button.svg)](https://studybuddies-chloe-codes1.endpoint.ainize.ai/)
+
+## Environment variables
+
+- `REACT_APP_`: custom variables need this prefix
+- use `process.env.REACT_APP_{env_var_name}`
+  🧚‍♀️don't install dotenv package
+
+e.g. .env
+```
+PORT=7000 // client port
+REACT_APP_SERVER_BASE_URL=http://localhost:3000 // server url
+```
+  
 ## Query
 
-- graphql document
-
 e.g. in .tsx
+
+- graphql document 작성 예시
 
 ```
 gql`
